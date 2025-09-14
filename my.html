@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भारत का इतिहास</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- 🔗 यहाँ CSS file का link डालो -->
+    <link rel="stylesheet" href="https://alllivetest.github.io/quiz-website/my.css">
+</head>
+
+<body>
+    <div class="container" id="quizBox">
+        <h1>🧠 भारत का इतिहास</h1>
+
+
+        <div id="liveStudentWrap">
+            <div class="live-students">
+                <div>🔴 Live Students</div>
+                <div class="live-count" id="liveCount">—</div>
+            </div>
+        </div>
+
+
+        <div id="detailsScreen">
+            <div class="details-grid">
+                <div class="detail-card">
+                    <div class="detail-label">📝 Test Name</div>
+                    <div class="detail-value"> भारत का इतिहास</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">🎯 Exam</div>
+                    <div class="detail-value">All Exams</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">📚 Subject</div>
+                    <div class="detail-value">History</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">📖 Topic</div>
+                    <div class="detail-value">वेद, पुराण, विदेशी यात्री, अभिलेख</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">❓ Total MCQs</div>
+                    <div class="detail-value" id="totalMCQs">10 Questions</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">🌐 Language</div>
+                    <div class="detail-value">English + Hindi</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">✅ Marks per Question</div>
+                    <div class="detail-value">+2 Marks</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">❌ Negative Marks</div>
+                    <div class="detail-value">-1/3 Mark</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">🏆 Total Marks</div>
+                    <div class="detail-value" id="totalMarks">20 Marks</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">⏱️ Total Time</div>
+                    <div class="detail-value" id="totalTime">12 Minutes</div>
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h3>📋 Quiz Instructions / परीक्षा निर्देश</h3>
+                <ul>
+                    <li>सभी प्रश्न अनिवार्य नही हैं (skip कर सकते हो ) / All questions are not compulsory (you can skip
+                        any MCQs) </li>
+                    <li>प्रत्येक सही उत्तर के लिए +2 अंक / +2 marks for each correct answer</li>
+                    <li>प्रत्येक गलत उत्तर के लिए -1/3 अंक / -1/3 mark for each wrong answer</li>
+                    <li>समय समाप्त होने पर परीक्षा अपने आप जमा हो जाएगी / Quiz will auto-submit when time expires</li>
+                    <li>आप किसी भी समय अपना उत्तर बदल सकते हैं / You can change your answer anytime</li>
+                    <li>बेहतर परिणाम के लिए अपना समय बुद्धिमानी से उपयोग करें / Use your time wisely for better results
+                    </li>
+                    <li class="important-warning">
+                        ⚠️ यदि आप को Quiz attend करने में कोई दिक्कत आ रही है तो आप मुझे +91 9649346723 पर WhatsApp करे
+                        ।
+                        / ⚠️ If you are facing any problem in attending the Quiz then please WhatsApp me on +91
+                        9649346723.
+                    </li>
+
+                </ul>
+            </div>
+
+
+            <div class="action-row" id="actionRow">
+
+                <a id="pdfHiBtn" class="pdf-btn hidden" href="#" target="_blank" rel="noopener noreferrer">
+                    📄 PDF (हिन्दी)
+                </a>
+
+
+                <button class="start-btn" onclick="goToForm()">📝 Continue to Registration</button>
+
+
+                <a id="pdfEnBtn" class="pdf-btn hidden" href="#" target="_blank" rel="noopener noreferrer">
+                    📄 PDF (English)
+                </a>
+            </div>
+
+        </div>
+
+
+        <div id="timerDisplay" class="timer-display" style="display: none;">
+            <div id="timeLeft">6:00</div>
+        </div>
+
+
+        <div id="formScreen" style="display: none;">
+            <input type="text" id="name" placeholder="Name / नाम" required><br>
+            <input type="tel" id="number" placeholder="Mobile Number / मोबाइल नंबर" required><br>
+            <select id="gender">
+                <option value="">Select Gender / लिंग चुनें</option>
+                <option value="Male">Male / पुरुष</option>
+                <option value="Female">Female / महिला</option>
+                <option value="Other">Other / अन्य</option>
+            </select><br>
+            <button class="start-btn" onclick="shareWhatsApp()">📤 Share on WhatsApp</button><br><br><br><br>
+
+            <button class="start-btn" onclick="startQuiz()">🎯 Proceed / आगे बढ़ें</button>
+        </div>
+
+
+        <div id="passwordScreen" style="display: none; text-align: center;">
+            <h3 style="color: white; margin-bottom: 12px;">🔒 Enter Access Password / पासवर्ड डालें</h3>
+            <p style="color: #fff; margin-bottom:10px;">
+                Password पाने के लिए नीचे वाले बटन पर क्लिक करिये और WhatsApp पर लिखिये: <strong>sir muse password
+                    dijiye</strong>
+            </p>
+            <button class="start-btn" id="waRequestBtn" onclick="requestPasswordWhatsApp()">💬 Request Password on
+                WhatsApp</button>
+            <div style="margin-top:16px;">
+                <input type="password" id="accessPassword" placeholder="Enter password / पासवर्ड डालें"
+                    style="max-width:300px;"><br>
+                <div class="unlock-wrap" style="justify-content:center; margin-top:8px;">
+                    <button class="start-btn" id="unlockBtn" onclick="checkPasswordEntry()">🔓 Unlock Quiz</button>
+                    <div class="unlock-spinner" id="unlockSpinner" aria-hidden="true"></div>
+                    <div class="unlock-status" id="unlockStatus">Verifying…</div>
+                </div>
+
+                <div id="passwordMsg" style="color:#ffd54f; margin-top:10px;"></div>
+            </div>
+        </div>
+
+
+        <div id="quizScreen" style="display: none;">
+            <div class="question" id="question"></div>
+            <div class="options" id="options"></div>
+            <div class="nav-buttons">
+                <button id="prevBtn" onclick="prevQuestion()" style="display:none;">◀️ Previous / पिछला</button>
+                <button id="nextBtn" onclick="nextQuestion()" style="display:none;">Next / अगला ▶️</button>
+            </div>
+            <button class="submit-btn" id="submitBtn" onclick="submitQuiz()" style="display:none;">✅ Submit / जमा
+                करें</button>
+            <button class="skip-submit-btn" onclick="skipAndSubmit()">Skip all & Submit</button>
+        </div>
+
+
+        <div id="resultScreen" style="display: none;">
+            <p class="score" id="scoreText"></p>
+            <div class="result-buttons">
+                <button class="start-btn" onclick="restartQuiz()">🔁 Try Again / फिर से शुरू करें</button>
+                <button class="start-btn" onclick="goLive()">🔴 Go live</button>
+                <button class="start-btn" onclick="viewGraph()">📊 View Graph</button>
+                <button class="start-btn" onclick="viewExplanation()">📜 View Explanation</button>
+            </div>
+            <br><br>
+            <button class="start-btn"
+                onclick="window.open('https://chat.whatsapp.com/DVqpQQvYJZo1SC4ch6pRbS', '_blank')">
+                🔗 Join My Group
+            </button>
+        </div>
+
+
+        <div id="liveScreen">
+            <div class="live-header">
+                <div style="display:flex;align-items:center;gap:10px">
+                    <div class="live-dot"></div>
+                    <div><strong>Live Results</strong>
+                        <div class="muted">Students are sharing marks</div>
+                    </div>
+                </div>
+                <div id="liveStats" class="muted">Showing recent activity</div>
+            </div>
+
+            <div class="feed" id="feed"></div>
+
+            <div class="live-controls">
+                <div style="display:flex;gap:8px;align-items:center;">
+                    <input id="liveMarkInput" class="num-input" type="number" min="0" />
+                    <button class="small-btn" onclick="submitLiveMark()">Share Mark</button>
+                </div>
+
+                <div style="text-align:right">
+                    <div class="muted">Your name: <span id="displayName">—</span></div>
+                    <button class="small-btn" style="margin-top:6px" onclick="leaveLive()">Leave Live</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="graphScreen">
+            <h2 style="text-align: center;">📊 Live Performance Graph</h2>
+            <div id="graphContainer">
+                <div id="graphTimer">60s</div>
+                <canvas id="performanceChart"></canvas>
+            </div>
+            <div class="graph-controls">
+                <button onclick="submitGraphMark()">Submit Your Marks</button>
+                <button onclick="leaveGraph()">Back to Results</button>
+            </div>
+        </div>
+
+
+        <div id="explanationScreen">
+            <h2 style="text-align: center; color: white;">📜 Explanations & Notes</h2>
+            <div id="explanationContent"></div>
+            <br>
+            <button class="start-btn" onclick="leaveExplanation()">Back to Results</button>
+        </div>
+    </div>
+
+    <!-- 🔗 External JS file (GitHub से) -->
+    <script src="https://alllivetest.github.io/quiz-website/my.js"></script>
+</body>
+
+</html>
